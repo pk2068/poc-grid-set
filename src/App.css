@@ -1,0 +1,34 @@
+@import '../node_modules/@syncfusion/ej2-base/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-calendars/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/fluent.css';
+@import '../node_modules/@syncfusion/ej2-react-grids/styles/fluent.css';
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 99vw;
+  background-color: green;
+}
+
+.CommandRow
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 99vw;
+  background-color: lightcoral;
+}
+
+.ms-Button {
+  margin-right: 10px;
+  margin-left: 10px;
+  
+}
