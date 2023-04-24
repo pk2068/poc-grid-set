@@ -40,7 +40,7 @@ interface IData {
 }
 
 function App() {
-  //const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0)
   const [dataState, setDataState] = useState<IData[]>([]);
   const [selectedRow, setSelectedRow] = useState<IData>();
   const [refreshRequested, setRefreshRequested] = useState(false);
@@ -158,32 +158,34 @@ function App() {
         });
 
         const randomNum = _.random(50, 5000);
-      console.log(randomNum);
+        console.log(randomNum);
 
-      setTimeout(() => {
-        //debugger;
-        console.log(response.data);
-        const newObject = (response.data[0] as IData);
-        iteration++;
-
-        if (myGridRef.current) {
-          myGridRef.current.setCellValue(newObject.id, "thumbnailUrl", newObject.thumbnailUrl)
-          //myGridRef.current.setCellValue(newObject.id, "url", newObject.url) // MUST COMMENT OUT OR NODE EXCEPTION
-        }
-
-        if (newState.length === existingArray.length || iteration === existingArray.length) // we have all the data
-        {
+        setTimeout(() => {
           //debugger;
-          setStageState(3);
-          console.log("what is now dataState", dataState);
+          console.log(response.data);
+          const newObject = (response.data[0] as IData);
+          iteration++;
+
           if (myGridRef.current) {
-            myGridRef.current.refresh();
-            const ds = myGridRef.current.dataSource as IData[];
-            console.log("ds", ds);
+            myGridRef.current.setCellValue(newObject.id, "thumbnailUrl", newObject.thumbnailUrl)
+            //myGridRef.current.setCellValue(newObject.id, "url", newObject.url) // MUST COMMENT OUT OR NODE EXCEPTION
           }
 
-        }
-      }, randomNum);
+          setCount(c => c+1) 
+
+          if (newState.length === existingArray.length || iteration === existingArray.length) // we have all the data
+          {
+            //debugger;
+            setStageState(3);
+            console.log("what is now dataState", dataState);
+            if (myGridRef.current) {
+              myGridRef.current.refresh();
+              const ds = myGridRef.current.dataSource as IData[];
+              console.log("ds", ds);
+            }
+
+          }
+        }, randomNum);
       }
       catch (error) {
         console.error(error);
@@ -264,7 +266,6 @@ function App() {
         }
       </ul>
     )
-
   }
 
   const rowSelectedHandler = (event: RowSelectEventArgs) => {
@@ -297,7 +298,7 @@ function App() {
     <div className="App" style={{ background: 'yellow' }}>
 
       <div className='CommandRow'>
-        <DefaultButton onClick={(e) => { setRefreshRequested(true) }}>Refresh</DefaultButton>
+        <DefaultButton onClick={(e) => { setRefreshRequested(true) }}>Set Initial Data</DefaultButton>
 
         <DefaultButton onClick={(e) => { updateDataWithSetState(dataState) }}>Update with SetState[newData]</DefaultButton>
 
@@ -316,13 +317,13 @@ function App() {
         dataSource={dataState}
         // enableInfiniteScrolling={false}
         // delayUpdate={false}
-        rowHeight={32}
+        rowHeight={22}
         enableVirtualization={false}
         enableHeaderFocus={false}
         allowSelection={true}
         allowFiltering={true}
         allowPaging={false}
-        height={700}
+        height={480}
         width={1200}
         allowResizing={true}
         allowReordering={false}
